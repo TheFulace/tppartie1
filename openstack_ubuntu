@@ -1,0 +1,16 @@
+#cd /opt/stack
+#git clone https://git.openstack.org/openstack-dev/devstack
+#sudo ./devstack/tools/create-stack-user.sh
+#sudo usermod -a -G sudo stack
+#sudo mv devstack /opt/stack
+#cd devstack
+#touch local.conf
+#echo "[[local|localrc]]" >> local.conf
+#echo "ADMIN_PASSWORD=test" >> local.conf
+#echo "DATABASE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+#echo "RABBIT_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+#echo "SERVICE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+#read -p "pause" pause
+# git checkout stable/queens
+sudo chown -R stack:stack /opt/stack/devstack
+FORCE=yes ./stack.sh

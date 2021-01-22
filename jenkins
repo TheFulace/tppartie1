@@ -1,0 +1,16 @@
+
+if [[ $1 = "Ubuntu" || $1 = "Debian" ]]; then
+	wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+	sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+	sudo apt update
+	sudo apt install jenkins
+elif [[ $1 = "Centos" ]]; then
+	sudo wget –O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+	echo "[jenkins]" >> /etc/yum.repos.d/jenkins.repo
+	echo "name=Jenkins-stable" >> /etc/yum.repos.d/jenkins.repo
+	echo "baseurl=http://pkg.jenkins.io/redhat" >> /etc/yum.repos.d/jenkins.repo
+	echo "gpgcheck=1" >> /etc/yum.repos.d/jenkins.repo
+	sudo rpm ––import https://pkg.jenkins.io/redhat/jenkins.io.key
+	sudo dnf install jenkins
+fi
+
