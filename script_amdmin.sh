@@ -1,5 +1,22 @@
 #!/bin/bash
 
+function help() {
+	echo "usage ./script_admin"
+	echo 
+	echo "openstack   install openstack"
+	echo "git 	  intall git"
+	echo "jenkins     install jenkins"
+	echo "install	  install a package"
+	echo "list	  list all the installed package"
+	echo "useradd	  add an user"
+	echo "greoupadd   add a group"
+	echo "groups 	  show all the groups of an user"
+	echo "status      show the status of a service"
+	echo "restart     restart a service"
+	echo "service     enable/disable a serivce"
+	echo "help	  show this help"
+}
+
 read -p "-> " commande
 
 os_type=`cat /etc/os-release  | head -1 | cut -f2 -d= | cut -f2 -d\"`
@@ -62,6 +79,9 @@ case $commande in
 			"off") systemctl disbale $servicename ;;
 		esac
 		;;
+	"help")
+		help ;;
 	*)
-		echo "commande invalide";;
+		echo "Commande invalide"
+		help ;;
 esac
